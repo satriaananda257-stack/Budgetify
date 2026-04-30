@@ -1,0 +1,413 @@
+/* ============================================================
+   Expense & Budget Visualizer — style.css
+   Responsive single-column layout, 320px–1440px
+   ============================================================ */
+
+/* ---------- Reset & base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  /* Prevent horizontal scrolling at any viewport width */
+  overflow-x: hidden;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #222;
+  line-height: 1.5;
+  /* Prevent horizontal scrolling */
+  overflow-x: hidden;
+}
+
+/* ---------- Warning banner ---------- */
+/*
+  Non-blocking: sits at the top of the viewport but does not push
+  content out of the way (position: sticky keeps it in flow but
+  dismissing it simply hides it).  The [hidden] attribute hides it
+  by default; JS removes [hidden] to show it.
+*/
+#warning-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: #fff3cd;
+  border-bottom: 2px solid #ffc107;
+  color: #664d03;
+  font-size: 0.9rem;
+  /* Sticky so it stays visible while scrolling, but non-modal */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+#warning-banner[hidden] {
+  display: none;
+}
+
+#warning-banner p {
+  flex: 1;
+}
+
+/* Dismiss button — meets 44×44 touch target requirement */
+#warning-banner-close {
+  flex-shrink: 0;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 0.5rem;
+  background: transparent;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  color: #664d03;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#warning-banner-close:hover,
+#warning-banner-close:focus-visible {
+  background-color: #ffc107;
+  outline: 2px solid #664d03;
+  outline-offset: 2px;
+}
+
+/* ---------- Main layout — single column ---------- */
+main {
+  width: 100%;
+  /* Adapts from 320px to 1440px without horizontal scrolling */
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+h1 {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 700;
+  text-align: center;
+  color: #111;
+}
+
+h2 {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+section {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.25rem 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Balance display ---------- */
+#balance-display {
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  font-weight: 700;
+  color: #1a73e8;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+/* ---------- Input form ---------- */
+#transaction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-field label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #444;
+}
+
+/* Text and number inputs */
+#item-name,
+#item-amount {
+  width: 100%;
+  /* min-height 44px for touch target */
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fafafa;
+  color: #222;
+  transition: border-color 0.15s;
+}
+
+#item-name:focus,
+#item-amount:focus {
+  outline: 2px solid #1a73e8;
+  outline-offset: 1px;
+  border-color: #1a73e8;
+}
+
+/* Category select — 44×44 touch target */
+#item-category {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fafafa;
+  color: #222;
+  cursor: pointer;
+  appearance: auto;
+  transition: border-color 0.15s;
+}
+
+#item-category:focus {
+  outline: 2px solid #1a73e8;
+  outline-offset: 1px;
+  border-color: #1a73e8;
+}
+
+/* Inline validation error messages */
+.field-error {
+  font-size: 0.8rem;
+  color: #d32f2f;
+  min-height: 1.1em; /* reserve space so layout doesn't jump */
+}
+
+/* Submit button — 44×44 touch target */
+#transaction-form button[type="submit"] {
+  align-self: flex-start;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #1a73e8;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.1s;
+}
+
+#transaction-form button[type="submit"]:hover {
+  background-color: #1558b0;
+}
+
+#transaction-form button[type="submit"]:active {
+  transform: scale(0.97);
+}
+
+#transaction-form button[type="submit"]:focus-visible {
+  outline: 2px solid #1a73e8;
+  outline-offset: 3px;
+}
+
+/* ---------- Transaction list ---------- */
+#transaction-list {
+  list-style: none;
+  /* Scrolls when items exceed the visible area */
+  overflow-y: auto;
+  max-height: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-right: 0.25rem; /* room for scrollbar */
+}
+
+/* Scrollbar styling (Webkit) */
+#transaction-list::-webkit-scrollbar {
+  width: 6px;
+}
+#transaction-list::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 3px;
+}
+#transaction-list::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 3px;
+}
+
+/* Empty state placeholder */
+#transaction-list .empty-state {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* Individual transaction item */
+#transaction-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #f9f9f9;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  flex-wrap: wrap;
+}
+
+.transaction-name {
+  flex: 1;
+  font-weight: 500;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.transaction-amount {
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* ---------- Category badges ---------- */
+/*
+  Fixed background colors matching CATEGORY_COLORS:
+    Food:      #FF6384
+    Transport: #36A2EB
+    Fun:       #FFCE56
+*/
+.category-badge {
+  display: inline-block;
+  padding: 0.2em 0.55em;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #fff;
+  /* Default fallback */
+  background-color: #888;
+}
+
+.category-badge[data-category="Food"] {
+  background-color: #FF6384;
+  color: #fff;
+}
+
+.category-badge[data-category="Transport"] {
+  background-color: #36A2EB;
+  color: #fff;
+}
+
+.category-badge[data-category="Fun"] {
+  background-color: #FFCE56;
+  /* Dark text for legibility on yellow */
+  color: #333;
+}
+
+/* Delete button — 44×44 touch target */
+.delete-btn {
+  flex-shrink: 0;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 0.5rem;
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  color: #d32f2f;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.delete-btn:hover {
+  background-color: #fdecea;
+  border-color: #d32f2f;
+}
+
+.delete-btn:focus-visible {
+  outline: 2px solid #d32f2f;
+  outline-offset: 2px;
+}
+
+/* ---------- Spending chart ---------- */
+#chart-container {
+  position: relative;
+  width: 100%;
+  /* Constrain chart height so it doesn't dominate on small screens */
+  max-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#spending-chart {
+  max-width: 100%;
+  max-height: 360px;
+}
+
+/* Fallback / placeholder text inside chart container */
+#chart-container p {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ---------- Responsive adjustments ---------- */
+
+/* Narrow phones (320px–374px) */
+@media (max-width: 374px) {
+  main {
+    padding: 1rem 0.75rem;
+    gap: 1.25rem;
+  }
+
+  section {
+    padding: 1rem 0.75rem;
+  }
+
+  #transaction-form button[type="submit"] {
+    width: 100%;
+    align-self: stretch;
+  }
+}
+
+/* Tablets and wider (768px+) */
+@media (min-width: 768px) {
+  main {
+    padding: 2rem 1.5rem;
+  }
+
+  #transaction-list {
+    max-height: 400px;
+  }
+
+  #chart-container {
+    max-height: 420px;
+  }
+
+  #spending-chart {
+    max-height: 420px;
+  }
+}
+
+/* Large screens (1024px+) */
+@media (min-width: 1024px) {
+  main {
+    padding: 2.5rem 2rem;
+  }
+}

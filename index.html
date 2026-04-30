@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense & Budget Visualizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Non-blocking warning banner for localStorage failure (hidden by default) -->
+  <div id="warning-banner" hidden>
+    <p>⚠️ Unable to access local storage. Your transactions will not be saved between sessions.</p>
+    <button type="button" id="warning-banner-close" aria-label="Dismiss warning">✕</button>
+  </div>
+
+  <main>
+    <header>
+    <h1>Expense &amp; Budget Visualizer</h1>
+    </header>
+
+    <!-- Balance Display -->
+    <section aria-labelledby="balance-heading">
+      <h2 id="balance-heading">Total Spent</h2>
+      <p id="balance-display" aria-live="polite" aria-atomic="true">0.00</p>
+    </section>
+
+    <!-- Input Form -->
+    <section aria-labelledby="form-heading">
+      <h2 id="form-heading">Add Transaction</h2>
+      <form id="transaction-form" novalidate>
+        <div class="form-field">
+          <label for="item-name">Item Name</label>
+          <input
+            type="text"
+            id="item-name"
+            name="item-name"
+            placeholder="e.g. Coffee"
+            autocomplete="off"
+          >
+          <span class="field-error" id="item-name-error" role="alert" aria-live="polite"></span>
+        </div>
+
+        <div class="form-field">
+          <label for="item-amount">Amount</label>
+          <input
+            type="number"
+            id="item-amount"
+            name="item-amount"
+            min="0.01"
+            step="0.01"
+            placeholder="0.00"
+          >
+          <span class="field-error" id="item-amount-error" role="alert" aria-live="polite"></span>
+        </div>
+
+        <div class="form-field">
+          <label for="item-category">Category</label>
+          <select id="item-category" name="item-category">
+            <option value="" disabled selected>Select a category</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Fun">Fun</option>
+          </select>
+          <span class="field-error" id="item-category-error" role="alert" aria-live="polite"></span>
+        </div>
+
+        <button type="submit">Add Transaction</button>
+      </form>
+    </section>
+
+    <!-- Transaction List -->
+    <section aria-labelledby="list-heading">
+      <h2 id="list-heading">Transaction History</h2>
+      <ul id="transaction-list" aria-live="polite" aria-relevant="additions removals">
+        <li class="empty-state">No transactions yet</li>
+      </ul>
+    </section>
+
+    <!-- Spending Chart -->
+    <section aria-labelledby="chart-heading">
+      <h2 id="chart-heading">Spending by Category</h2>
+      <div id="chart-container">
+        <canvas id="spending-chart" aria-label="Pie chart showing spending by category" role="img"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <!-- Chart.js from CDN (loaded before app.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Application logic -->
+  <script src="app.js"></script>
+</body>
+</html>
