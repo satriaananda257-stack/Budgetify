@@ -210,8 +210,8 @@ function addTransaction(name, amount, category) {
 }
 
 /**
- * Removes the transaction with the given id from the in-memory transactions array,
- * persists the updated array to localStorage, then triggers a full UI re-render.
+ *  Removes the transaction with the given id from the in-memory transactions array,
+ *  persists the updated array to localStorage, then triggers a full UI re-render.
  *
  * @param {string} id - The unique identifier of the transaction to remove
  */
