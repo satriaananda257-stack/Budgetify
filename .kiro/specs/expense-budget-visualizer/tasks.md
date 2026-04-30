@@ -2,7 +2,7 @@
 
 ## Overview
 
-Build a single-file, client-side web app using plain HTML, CSS, and Vanilla JavaScript. The implementation proceeds in layers: HTML skeleton → CSS layout → pure-function core (validator, balance, chart data, storage) → UI render functions → event wiring → app initialization. Each layer is testable before the next is added. Property-based tests use fast-check loaded via CDN alongside the app's test file.
+Build a single-file, client-side web app using plain HTML, CSS, and Vanilla JavaScript. The implementation proceeds in layers: HTML skeleton → CSS layout → pure-function core (validator,  balance, chart data, storage) → UI render functions → event wiring → app initialization. Each layer is testable before the next is added. Property-based tests use fast-check loaded via CDN alongside the app's test file.
 
 ## Tasks
 
