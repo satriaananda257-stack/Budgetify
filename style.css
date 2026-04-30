@@ -411,3 +411,14 @@ section {
     padding: 2.5rem 2rem;
   }
 }
+
+/* ---------- Transaction container ---------- */
+.transactionContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.transactionContainer > * {
+  flex: 1;
+}

@@ -103,7 +103,7 @@ Build a single-file, client-side web app using plain HTML, CSS, and Vanilla Java
 - [x] 7. Checkpoint — Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [~] 8. Implement form submit handler and app initialization
+- [x] 8. Implement form submit handler and app initialization
   - [x] 8.1 Implement `handleFormSubmit(event)`
     - Prevent default form submission
     - Clear all inline error `<span>` elements at the start of each attempt
@@ -113,19 +113,19 @@ Build a single-file, client-side web app using plain HTML, CSS, and Vanilla Java
     - _Requirements: 1.2, 1.3, 1.4, 1.5_
 
 
-  - [-] 8.3 Implement app initialization (`DOMContentLoaded` handler)
+  - [x] 8.3 Implement app initialization (`DOMContentLoaded` handler)
     - Call `StorageService.load()`; if the result is `null`, set `transactions = []` and show the `#warning-banner`; otherwise set `transactions` to the loaded array
     - Attach the `submit` event listener on `#transaction-form` pointing to `handleFormSubmit`
     - Call `renderAll()` to paint the initial UI state
     - _Requirements: 5.3, 5.4, 8.1_
 
-- [~] 9. Set up fast-check property-based test file
+- [x] 9. Set up fast-check property-based test file
   - Create `tests.html` (or `tests.js` runnable via a `<script type="module">`) that loads fast-check from CDN and imports/inlines the pure functions under test
   - Configure each property test to run a minimum of 100 iterations (`{ numRuns: 100 }`)
   - Tag each test with a comment in the format: `// Feature: expense-budget-visualizer, Property N: <title>`
   - _Requirements: NFR-1 (no build step required)_
 
-- [~] 10. Final checkpoint — Ensure all tests pass
+- [x] 10. Final checkpoint — Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes

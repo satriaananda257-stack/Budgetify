@@ -323,7 +323,7 @@ function renderTransactionList(transactions) {
     deleteBtn.className = "delete-btn";
     deleteBtn.setAttribute("data-id", t.id);
     deleteBtn.setAttribute("aria-label", `Delete ${t.name}`);
-    deleteBtn.textContent = "✕";
+    deleteBtn.textContent = "Delete";
 
     li.appendChild(nameSpan);
     li.appendChild(amountSpan);
