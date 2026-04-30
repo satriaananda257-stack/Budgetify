@@ -186,7 +186,7 @@ function renderChart(transactions) { ... }
 
 **Interface**:
 ```js
-// Returns { valid: boolean, errors: { name?: string, amount?: string, category?: string } }
+//  Returns { valid: boolean, errors: { name?: string, amount?: string, category?: string } }
 function validateForm(name, amount, category) { ... }
 ```
 
